@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ROSSO UNITED RLC - Rocket League Club Official Website">
+  <title>ROSSO UNITED RLC | Official Website</title>
+  <style>
+    :root{
+      --red:#e3262e;
+      --red-dark:#9d1017;
+      --black:#070707;
+      --black2:#101010;
+      --white:#f5f5f5;
+      --gray:#a9a9a9;
+      --line:rgba(255,255,255,.10);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Segoe UI","Noto Sans JP",Arial,sans-serif;
+      background:var(--black);
+      color:var(--white);
+      line-height:1.8;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1120px,92%);margin:auto}
+
+    /* Header */
+    header{
+      position:fixed;
+      top:0;left:0;width:100%;
+      z-index:1000;
+      background:rgba(5,5,5,.88);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:25px;
+    }
+    .logo{
+      font-size:1.05rem;
+      font-weight:900;
+      letter-spacing:2px;
+      white-space:nowrap;
+    }
+    .logo span{color:var(--red)}
+    nav ul{display:flex;list-style:none;gap:28px}
+    nav a{
+      color:#ddd;
+      font-size:.88rem;
+      font-weight:700;
+      transition:.25s;
+    }
+    nav a:hover{color:var(--red)}
+    .menu-btn{display:none;background:none;border:0;color:white;font-size:1.8rem}
+
+    /* Hero */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      background:
+        radial-gradient(circle at 80% 30%,rgba(227,38,46,.24),transparent 35%),
+        linear-gradient(135deg,#080808 0%,#0d0d0d 55%,#170607 100%);
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      width:650px;height:650px;
+      right:-250px;bottom:-320px;
+      border:90px solid rgba(227,38,46,.08);
+      border-radius:50%;
+    }
+    .hero-content{position:relative;z-index:2;padding:130px 0 90px}
+    .eyebrow{
+      color:var(--red);
+      font-size:.82rem;
+      font-weight:900;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      margin-bottom:16px;
+    }
+    h1{
+      font-size:clamp(3rem,8vw,7rem);
+      line-height:.95;
+      font-weight:1000;
+      letter-spacing:-3px;
+    }
+    h1 .accent{color:var(--red)}
+    .hero-sub{
+      max-width:650px;
+      color:#c9c9c9;
+      margin:28px 0 35px;
+      font-size:1.05rem;
+    }
+    .hero-buttons{display:flex;gap:14px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:13px 24px;
+      border-radius:4px;
+      font-weight:900;
+      transition:.25s;
+      border:1px solid var(--red);
+    }
+    .btn-primary{background:var(--red)}
+    .btn-primary:hover{background:#ff333c;transform:translateY(-2px)}
+    .btn-outline{background:transparent}
+    .btn-outline:hover{background:rgba(227,38,46,.12)}
+    .scroll{
+      position:absolute;bottom:25px;left:0;
+      color:#777;font-size:.7rem;letter-spacing:3px;
+    }
+
+    /* Sections */
+    section{padding:100px 0}
+    .section-head{margin-bottom:45px}
+    .section-number{color:var(--red);font-weight:900;font-size:.75rem;letter-spacing:3px}
+    h2{
+      font-size:clamp(2rem,4vw,3.4rem);
+      line-height:1.1;
+      margin-top:7px;
+    }
+    .lead{color:var(--gray);max-width:760px;margin-top:18px}
+
+    /* About */
+    .about{
+      background:linear-gradient(180deg,#0a0a0a,#101010);
+    }
+    .about-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:60px;
+      align-items:center;
+    }
+    .about-text p{color:#ccc;margin-bottom:18px}
+    .quote{
+      border-left:4px solid var(--red);
+      padding:22px 25px;
+      background:#151515;
+      font-size:1.15rem;
+      font-weight:800;
+    }
+
+    /* Departments */
+    .departments{background:#080808}
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+    .card{
+      position:relative;
+      padding:32px;
+      min-height:260px;
+      background:linear-gradient(145deg,#151515,#0e0e0e);
+      border:1px solid var(--line);
+      border-radius:8px;
+      overflow:hidden;
+      transition:.3s;
+    }
+    .card:after{
+      content:"";
+      position:absolute;
+      width:120px;height:120px;
+      right:-50px;bottom:-50px;
+      background:var(--red);
+      opacity:.08;
+      transform:rotate(45deg);
+    }
+    .card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(227,38,46,.55);
+    }
+    .card-no{color:var(--red);font-weight:900;letter-spacing:2px;font-size:.75rem}
+    .card h3{font-size:1.5rem;margin:8px 0 14px}
+    .card p{color:#aaa}
+    .badge{
+      display:inline-block;
+      margin-top:20px;
+      padding:4px 10px;
+      font-size:.7rem;
+      border:1px solid #444;
+      color:#ccc;
+      border-radius:20px;
+    }
+
+    /* Vision */
+    .vision{
+      background:
+        linear-gradient(rgba(7,7,7,.88),rgba(7,7,7,.96)),
+        radial-gradient(circle at 20% 50%,rgba(227,38,46,.25),transparent 35%);
+    }
+    .vision-box{
+      border:1px solid rgba(227,38,46,.35);
+      padding:50px;
+      background:rgba(20,20,20,.72);
+      text-align:center;
+    }
+    .vision-box h3{
+      font-size:clamp(1.8rem,4vw,3.2rem);
+      margin-bottom:18px;
+    }
+    .vision-box p{color:#bbb;max-width:780px;margin:auto}
+
+    /* Join */
+    .join{
+      text-align:center;
+      background:var(--red);
+      padding:90px 0;
+    }
+    .join h2{font-size:clamp(2.2rem,5vw,4rem)}
+    .join p{max-width:700px;margin:20px auto 30px;color:#fff}
+    .discord{
+      display:inline-flex;
+      background:#fff;
+      color:#111;
+      padding:15px 32px;
+      border-radius:5px;
+      font-weight:900;
+      transition:.25s;
+    }
+    .discord:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.2)}
+
+    footer{
+      padding:35px 0;
+      background:#050505;
+      border-top:1px solid var(--line);
+    }
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:center;
+    }
+    footer p{color:#666;font-size:.8rem}
+    .footer-logo{font-weight:900;letter-spacing:2px}
+    .footer-logo span{color:var(--red)}
+
+    @media(max-width:800px){
+      nav ul{display:none}
+      .menu-btn{display:block}
+      .nav.open nav ul{
+        display:flex;
+        position:absolute;
+        top:76px;left:0;width:100%;
+        padding:20px;
+        background:#090909;
+        flex-direction:column;
+        gap:15px;
+        border-bottom:1px solid var(--line);
+      }
+      .about-grid{grid-template-columns:1fr;gap:35px}
+      .cards{grid-template-columns:1fr}
+      .vision-box{padding:35px 22px}
+    }
+    @media(max-width:500px){
+      .hero-content{padding-top:115px}
+      .hero-buttons .btn{width:100%}
+      section{padding:75px 0}
+      .footer-inner{flex-direction:column;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav" id="nav">
+    <a href="#top" class="logo">ROSSO <span>UNITED</span> RLC</a>
+    <nav>
+      <ul>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#departments">DEPARTMENTS</a></li>
+        <li><a href="#vision">VISION</a></li>
+        <li><a href="#join">JOIN</a></li>
+      </ul>
+    </nav>
+    <button class="menu-btn" aria-label="メニュー">☰</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="eyebrow">ROCKET LEAGUE CLUB / OFFICIAL SITE</div>
+      <h1>ROSSO<br><span class="accent">UNITED</span> RLC</h1>
+      <p class="hero-sub">
+        勝利を目指し、仲間と成長し、クラブの未来を創る。<br>
+        Rocket Leagueとともに、本気で大きな舞台を目指します。
+      </p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#join">JOIN US</a>
+        <a class="btn btn-outline" href="#departments">4つの部門を見る</a>
+      </div>
+    </div>
+    <div class="container scroll">SCROLL TO EXPLORE ↓</div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-number">01 / ABOUT</div>
+        <h2>紹介のあいさつ</h2>
+        <p class="lead">ROSSO UNITED RLCは、選手・コーチが一丸となって創り上げていくRocket Leagueクラブです。</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>この度は、当クラブに興味を寄せていただき誠にありがとうございます。</p>
+          <p>今回、当クラブの発足に向けて選手・コーチを募集させていただくことを決定致しました。</p>
+          <p>当クラブには、<strong>トップチーム部門、セカンドチーム部門、アカデミー部門、コーチング部門</strong>の4部門があります。</p>
+        </div>
+        <div class="quote">
+          「選手だけではなく、クラブに関わるすべての人と共に、ROSSO UNITED RLCを創っていく。」
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="departments" id="departments">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-number">02 / DEPARTMENTS</div>
+        <h2>4つの部門</h2>
+        <p class="lead">それぞれの立場からクラブに関わり、共に成長できる環境を目指します。</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-no">01 / TOP TEAM</div>
+          <h3>トップチーム部門</h3>
+          <p>大会や試合に積極的に参加し、クラブの最前線として共に戦ってくださる選手たち。</p>
+          <span class="badge">競技・大会活動</span>
+        </article>
+
+        <article class="card">
+          <div class="card-no">02 / SECOND TEAM</div>
+          <h3>セカンドチーム部門</h3>
+          <p>トップチーム昇格を目指し、日々ロケットリーグに取り組んでくださる選手たち。</p>
+          <span class="badge">育成・昇格</span>
+        </article>
+
+        <article class="card">
+          <div class="card-no">03 / ACADEMY</div>
+          <h3>アカデミー部門</h3>
+          <p>18歳以下の育成の場として成長し、クラブを創っていってくださる若き才能の皆様。</p>
+          <span class="badge">U-18 / 育成</span>
+        </article>
+
+        <article class="card">
+          <div class="card-no">04 / COACHING</div>
+          <h3>コーチング部門</h3>
+          <p>このクラブを共に創っていってくださる皆様。裏方として選手たちの成長を暖かくサポートしていただく皆様です。</p>
+          <span class="badge">コーチ・運営</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="vision" id="vision">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-number">03 / VISION</div>
+        <h2>最後に</h2>
+      </div>
+      <div class="vision-box">
+        <h3>このクラブを、共に大きく。</h3>
+        <p>
+          積極的に大会に出場したり、色々な相手と試合をしたりして、
+          このクラブを全力で大きくしていきます。<br><br>
+          このクラブへの関心を少しでも持ってくれた方は、
+          どうか加入を前向きに検討してください。<br>
+          <strong>このクラブを共に成長させていきましょう。</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="join" id="join">
+    <div class="container">
+      <h2>JOIN ROSSO UNITED</h2>
+      <p>
+        選手・コーチとしてROSSO UNITED RLCに参加してみませんか？<br>
+        少しでも興味を持っていただけた方は、ぜひDiscordからお問い合わせください。
+      </p>
+      <a class="discord" href="https://discord.gg/dD7FsgqXT" target="_blank" rel="noopener noreferrer">
+        DISCORDから加入・お問い合わせ →
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-logo">ROSSO <span>UNITED</span> RLC</div>
+    <p>© 2026 ROSSO UNITED RLC. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById("nav");
+  const menuBtn = document.querySelector(".menu-btn");
+
+  menuBtn.addEventListener("click", () => {
+    nav.classList.toggle("open");
+  });
+
+  document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("click", () => nav.classList.remove("open"));
+  });
+</script>
+
+</body>
+</html>
